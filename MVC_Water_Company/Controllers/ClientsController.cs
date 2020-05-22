@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using MVC_Water_Company.Data;
 using MVC_Water_Company.Models;
+using MVC_Water_Company.Helpers;
 
 namespace MVC_Water_Company.Controllers
 {
@@ -41,7 +42,7 @@ namespace MVC_Water_Company.Controllers
         // GET: Clients/Create
         public ActionResult Create()
         {
-            ViewBag.LocalityID = new SelectList(db.Localities, "LocalityID", "Name");
+            ViewBag.LocalityID = new SelectList(CombosHelper.GetLocalities(), "LocalityID", "Name");
             return View();
         }
 
@@ -59,7 +60,7 @@ namespace MVC_Water_Company.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.LocalityID = new SelectList(db.Localities, "LocalityID", "Name", client.LocalityID);
+            ViewBag.LocalityID = new SelectList(CombosHelper.GetLocalities(), "LocalityID", "Name", client.LocalityID);
             return View(client);
         }
 

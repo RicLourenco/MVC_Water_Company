@@ -113,8 +113,18 @@ namespace MVC_Water_Company.Controllers
         {
             Locality locality = await db.Localities.FindAsync(id);
             db.Localities.Remove(locality);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+
+            try
+            {
+                await db.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                ViewBag.Error = "There are clients associated with this locality";
+                return View();
+            }
+
         }
 
         protected override void Dispose(bool disposing)

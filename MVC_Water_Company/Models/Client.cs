@@ -48,6 +48,7 @@ namespace MVC_Water_Company.Models
 
         [Display(Name = "Locality")]
         [Required(ErrorMessage = "Required field")]
+        [Range(1, int.MaxValue, ErrorMessage = "Must select a {0}")]
         public int LocalityID { get; set; }
 
         public virtual Locality Locality { get; set; }
